@@ -1,7 +1,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{route('home')}}" class="brand-link">
       <img src="{{asset('public/assets/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">C.P.H.School</span>
     </a>
@@ -11,10 +11,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('public/assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{(!empty(Auth::user()->image))? url('public/upload/user_img/'.Auth::user()->image): url('public/upload/default_img.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{Auth::user()->name}}</a>
+          <a href="{{route('profiles.view')}}" class="d-block">{{Auth::user()->name}}</a>
         </div>
       </div>
 
@@ -31,11 +31,12 @@
                 </p>
             </a>
           </li>
+          @if(Auth::user()->user_role == 'Admin')
           <li class="nav-item ">
             <a href="#" class="nav-link {{Request::is('users/view') ? 'open-menu': ''}}">
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fas fa-th"></i>
-              <p> Master</p>
+              <p>User Manage</p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -44,16 +45,26 @@
                   <p>Users</p>
                 </a>
               </li>
+            </ul>
+          </li>
+          @endif
+          <li class="nav-item ">
+            <a href="#" class="nav-link {{Request::is('profiles/view') ? 'open-menu': ''}}">
+              <i class="fas fa-angle-left right"></i>
+              <i class="nav-icon fa fa-user"></i>
+              <p>Profile Manage</p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link active">
+                <a href="{{route('profiles.view')}}" class="nav-link {{Request::is('profiles/view') ? 'active': ''}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Product</p>
+                  <p>User Profile</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{route('profiles.cpassword')}}" class="nav-link {{Request::is('profiles/cpassword') ? 'active': ''}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p>Password Change</p>
                 </a>
               </li>
             </ul>

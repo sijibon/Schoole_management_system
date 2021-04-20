@@ -3,10 +3,6 @@
 
 @section('content')
 
-@push('css')
-<link rel="stylesheet" href="{{asset('public/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('public/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-@endpush
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -73,19 +69,4 @@
       </div>
     </div>
 </section>
-
-@push('js')
-    
-<script src="{{asset('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('public/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": true, "autoWidth": true,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  });
-</script>
-@endpush
-
 @endsection

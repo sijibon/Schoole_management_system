@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::prefix('profiles')->group(function(){
     Route::get('/view',[ProfileController::class,'index'])->name('profiles.view');
     Route::get('/edit/{id}',[ProfileController::class,'edit'])->name('profiles.edit');
     Route::post('/update/{id}',[ProfileController::class,'update'])->name('profiles.update');
+    Route::get('/cpassword',[ProfileController::class,'cpassword'])->name('profiles.cpassword');
+    Route::post('/change/password',[ProfileController::class,'changePassword'])->name('profiles.change.password');
 });
 
 
