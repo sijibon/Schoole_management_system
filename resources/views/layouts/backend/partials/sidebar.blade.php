@@ -32,8 +32,8 @@
             </a>
           </li>
           @if(Auth::user()->user_role == 'Admin')
-          <li class="nav-item ">
-            <a href="#" class="nav-link {{Request::is('users/view') ? 'open-menu': ''}}">
+          <li class="nav-item {{Request::is('users/view') ? 'menu-open': ''}}">
+            <a href="#" class="nav-link" {{Request::is('users/view') ? 'active': ''}}>
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fas fa-th"></i>
               <p>User Manage</p>
@@ -48,8 +48,8 @@
             </ul>
           </li>
           @endif
-          <li class="nav-item ">
-            <a href="#" class="nav-link {{Request::is('profiles/view') ? 'open-menu': ''}}">
+          <li class="nav-item {{Request::is(('profiles/view') OR ('profiles/cpassword')) ? 'menu-open': ''}}">
+            <a href="#" class="nav-link" {{Request::is('profiles/view') ? 'active': ''}}>
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fa fa-user"></i>
               <p>Profile Manage</p>
