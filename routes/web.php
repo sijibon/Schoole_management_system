@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentClassController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,7 @@ Route::group(['middleware'=>'auth'], function(){
             Route::get('/delete/{id}',[UserController::class,'delete'])->name('users.delete');
         });
     });
-
-
+    
     Route::prefix('profiles')->group(function(){
         Route::get('/view',[ProfileController::class,'index'])->name('profiles.view');
         Route::get('/edit/{id}',[ProfileController::class,'edit'])->name('profiles.edit');
@@ -44,5 +44,7 @@ Route::group(['middleware'=>'auth'], function(){
     });
 
 });
+
+Route::resource('student/class', StudentClassController::class);
 
 

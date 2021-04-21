@@ -69,6 +69,22 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-item {{Request::is(('student/class')) ? 'menu-open': ''}}">
+            <a href="#" class="nav-link" {{Request::is('student/class ') ? 'active': ''}}>
+              <i class="fas fa-angle-left right"></i>
+              <i class="nav-icon fa fa-file"></i>
+              <p>Management Setup</p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('class.index')}}" class="nav-link {{Request::is('student/class') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Students Class</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

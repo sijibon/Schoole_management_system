@@ -13,12 +13,12 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1 class="m-0">User List</h1>
+        <h1 class="m-0">Class List</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Users</li>
+            <li class="breadcrumb-item active">Students Class</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -31,8 +31,8 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">User Datalist</h3>
-              <a href="{{route('users.create')}}" class="btn btn-sm btn-success float-right"><i class="fa fa-plus-circle"></i> User Add</a>
+              <h3 class="card-title">Class List</h3>
+              <a href="{{route('class.create')}}" class="btn btn-sm btn-success float-right"><i class="fa fa-plus-circle"></i> Add Class</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -40,9 +40,7 @@
                 <thead>
                     <tr>              
                         <th>#SL</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Email</th>
+                        <th>Class Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -51,16 +49,19 @@
                     $key =1;
                 @endphp
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($classes as $class)
                         <tr>
                             <td>{{$key++}}</td>
-                            <td>{{$user->name}}</td>
-                            <td><span class="badge badge-success">{{$user->user_role}}</span></td>
-                            <td>{{$user->email}}</td>
+                            <td>{{$class->class_name}}</td>                          
                             <td class="d-flex">
-                                <a class="btn btn-sm btn-info mc-1" href="{{ url('users/edit/'.$user->id) }}"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-sm btn-success mx-1" href="{{ url('users/view/'.$user->id) }}"><i class="fas fa-eye"></i></a>
-                                <a class="btn btn-sm btn-danger" id="delete" href="{{ url('users/delete/'.$user->id) }}"><i class="far fa-trash-alt"></i></a>
+                                <a class="btn btn-sm btn-info mx-1" href="{{ url('student/class/'.$class->id.'/edit') }}"><i class="fas fa-edit"></i></a>
+                                <form action="{{ route('class.destroy', $class->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" id="delete" title="delete" style="border: none; background-color:transparent;">
+                                      <a class="btn btn-sm btn-danger" href="{{url('student/class'.$class->id)}}"><i class="far fa-trash-alt"></i></a>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -86,4 +87,5 @@
   });
 </script>
 @endpush
+
 @endsection
