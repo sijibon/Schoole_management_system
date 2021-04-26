@@ -70,7 +70,7 @@
             </ul>
           </li>
 
-          <li class="nav-item {{Request::is(('student/class')) ? 'menu-open': ''}}">
+          <li class="nav-item {{Request::is(('student/class') OR Request::is('student/year') OR Request::is('student/group') OR Request::is('student/shift')) ? 'menu-open': ''}}">
             <a href="#" class="nav-link" {{Request::is('student/class ') ? 'active': ''}}>
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fa fa-file"></i>
@@ -81,6 +81,24 @@
                 <a href="{{route('class.index')}}" class="nav-link {{Request::is('student/class') ? 'active': ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Students Class</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('year.index')}}" class="nav-link {{Request::is('student/year') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Year</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('group.index')}}" class="nav-link {{Request::is('student/group') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Group</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('shift.index')}}" class="nav-link {{Request::is('student/shift') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Shift</p>
                 </a>
               </li>
             </ul>

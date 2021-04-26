@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentClassController;
+use App\Http\Controllers\YearController;
+use App\Http\Controllers\StudentGroupController;
+use App\Http\Controllers\ShiftController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +49,8 @@ Route::group(['middleware'=>'auth'], function(){
 });
 
 Route::resource('student/class', StudentClassController::class);
+Route::resource('student/year', YearController::class);
+Route::resource('student/group', StudentGroupController::class);
+Route::resource('student/shift', ShiftController::class);
 
 

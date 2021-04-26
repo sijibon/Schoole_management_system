@@ -84,9 +84,9 @@ class StudentClassController extends Controller
             'class_name'=>'required|unique:student_classes,class_name',
         ]);
 
-        $data = StudentClass::find($id)->first();
+        $data = StudentClass::find($id);
         $data->class_name = $request->class_name;
-        if($data->save() > 0){
+        if($data->update() > 0){
             Toastr::success('Class successfuly updated', 'Success');
             return redirect()->route('class.index');
         }else{
@@ -106,14 +106,6 @@ class StudentClassController extends Controller
         $delete = StudentClass::where('id',$id)->delete();
         Toastr::success('Class successfuly deleted', 'Success');
         return redirect()->route('class.index');
-
-        // if($delete->delete()){
-        //     Toastr::success('Class successfuly deleted', 'Success');
-        //     return redirect()->route('class.index');
-        // }else{
-        //     Toastr::error('Class did not deleted', 'Error');
-        //     return redirect()->route('class.index');
-        // }
 
     }
 }

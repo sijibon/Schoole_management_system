@@ -5,12 +5,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Students Class</h1>
+          <h1 class="m-0">Year Manage</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Edit Class</a></li>
+            <li class="breadcrumb-item active">Year List</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,21 +26,19 @@
               <!-- general form elements disabled -->
               <div class="card card-info">
                 <div class="card-header">
-                  <h3 class="card-title">Create Class</h3>
+                  <h3 class="card-title">Add Year</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                <form action="{{route('class.update',$edit->id)}}" method="post" id="quickForm">
-                @csrf
-                @method('PUT')
-
+                <form action="{{ route('year.store')}}" method="post" id="quickForm"> 
+                  @csrf
                     <div class="row">
                         <div class="col-sm-6">
-                          <div class="form-group">
-                              <label>Class Name</label>
-                              <input type="text" name="class_name" class="form-control" value="{{$edit->class_name}}" placeholder="Class Name ...">
-                              <font style="color: red">{{($errors->has('class_name'))? ($errors->first('class_name')): ''}}</font>
-                          </div>
+                            <div class="form-group">
+                              <label>Year Name</label>
+                              <input type="text" name="year_name" class="form-control" placeholder="Year Name ...">
+                              <font style="color: red">{{($errors->has('year_name'))? ($errors->first('year_name')): ''}}</font>
+                            </div>
                         </div>
 
                         <div class="col-sm-6 mt-4 p-2">
@@ -69,23 +67,18 @@
 
 <script>
     $(function () {
-      $.validator.setDefaults({
-        submitHandler: function () {
-          alert( "Form successful submitted!" );
-        }
-      });
       $('#quickForm').validate({
         rules: {
-          class_name: {
+          year_name: {
             required: true,
-            class_name: true,
+            year_name: true,
           },
          
         },
         messages: {
-          class_name: {
-            required: "Please enter class name",
-            class_name: "Please enter a unique class name"
+          year_name: {
+            required: "Please enter year name",
+            year_name: "Please enter a unique year name"
           },
           terms: "Please accept our terms"
           
