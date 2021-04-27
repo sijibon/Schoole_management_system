@@ -49,7 +49,7 @@
           </li>
           @endif
           <li class="nav-item {{Request::is(('profiles/view') OR ('profiles/cpassword')) ? 'menu-open': ''}}">
-            <a href="#" class="nav-link" {{Request::is('profiles/view') ? 'active': ''}}>
+            <a href="#" class="nav-link">
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fa fa-user"></i>
               <p>Profile Manage</p>
@@ -70,8 +70,9 @@
             </ul>
           </li>
 
-          <li class="nav-item {{Request::is(('student/class') OR Request::is('student/year') OR Request::is('student/group') OR Request::is('student/shift')) ? 'menu-open': ''}}">
-            <a href="#" class="nav-link" {{Request::is('student/class ') ? 'active': ''}}>
+          <li class="nav-item {{Request::is(('student/class') OR Request::is('student/year') OR Request::is('student/group') 
+             OR Request::is('student/shift') OR Request::is('student/fee')) ? 'menu-open': ''}}">
+            <a href="#" class="nav-link">
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fa fa-file"></i>
               <p>Management Setup</p>
@@ -99,6 +100,18 @@
                 <a href="{{route('shift.index')}}" class="nav-link {{Request::is('student/shift') ? 'active': ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Student Shift</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('fee.index')}}" class="nav-link {{Request::is('student/fee') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Fee</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('fee_amount.index')}}" class="nav-link {{Request::is('student/fee_amount') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fee Category Amount</p>
                 </a>
               </li>
             </ul>

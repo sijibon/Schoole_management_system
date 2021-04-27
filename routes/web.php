@@ -7,6 +7,9 @@ use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\YearController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\FeeCategoryController;
+use App\Http\Controllers\FeeAmountController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +55,7 @@ Route::resource('student/class', StudentClassController::class);
 Route::resource('student/year', YearController::class);
 Route::resource('student/group', StudentGroupController::class);
 Route::resource('student/shift', ShiftController::class);
+Route::resource('student/fee', FeeCategoryController::class);
+Route::resource('student/fee_amount', FeeAmountController::class);
 
 

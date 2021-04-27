@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Toastr;
 class ShiftController extends Controller
 {
-    public function index()
+   public function index()
     {
         $shifts = Shift::orderBy('id','desc')->get();
         return view('students_shift.shift-index', compact('shifts'));
