@@ -10,7 +10,7 @@ class FeeCategoryController extends Controller
     public function index()
     {
         $fees = FeeCategory::orderBy('id','desc')->get();
-        return view('students_fee.fee-index', compact('fees'));
+        return view('setup.students_fee.fee-index', compact('fees'));
     }
 
     /**
@@ -20,7 +20,7 @@ class FeeCategoryController extends Controller
      */
     public function create()
     {
-        return view('students_fee.fee-create');
+        return view('setup.students_fee.fee-create');
     }
 
     /**
@@ -42,7 +42,7 @@ class FeeCategoryController extends Controller
             return redirect()->route('fee.index');
         }else{
             Toastr::error('Fee did not inserted', 'Error');
-            return view('students_fee.fee-index');
+            return view('setup.students_fee.fee-index');
         }
     }
 
@@ -57,7 +57,7 @@ class FeeCategoryController extends Controller
     public function edit($id)
     {
         $editFee = FeeCategory::where('id',$id)->first();
-        return view('students_fee.fee-edit', compact('editFee'));
+        return view('setup.students_fee.fee-edit', compact('editFee'));
     }
 
 

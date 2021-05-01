@@ -5,12 +5,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Year Manage</h1>
+          <h1 class="m-0">Exam Type Manage</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Year List</li>
+            <li class="breadcrumb-item active">Exam Type List</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,25 +26,24 @@
               <!-- general form elements disabled -->
               <div class="card card-info">
                 <div class="card-header">
-                  <h3 class="card-title">Update Edit</h3>
+                  <h3 class="card-title">Add Exam</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                <form action="{{route('year.update', $editYear->id)}}" method="post" id="quickForm"> 
-                @csrf
-                 @method('PUT')           
+                <form action="{{ route('examType.store')}}" method="post" id="quickForm"> 
+                  @csrf
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                              <label>Year Name</label>
-                              <input type="text" value="{{$editYear->year_name}}" name="year_name" class="form-control" placeholder="Year Name ...">
-                              <font style="color: red">{{($errors->has('year_name'))? ($errors->first('year_name')): ''}}</font>
+                              <label>Exam Name</label>
+                              <input type="text" name="exam_name" class="form-control" placeholder="Exam Name ...">
+                              <font style="color: red">{{($errors->has('exam_name'))? ($errors->first('exam_name')): ''}}</font>
                             </div>
                         </div>
 
                         <div class="col-sm-6 mt-4 p-2">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info">Update</button>
+                                <button type="submit" class="btn btn-info">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -70,16 +69,16 @@
     $(function () {
       $('#quickForm').validate({
         rules: {
-          year_name: {
+          exam_name: {
             required: true,
-            year_name: true,
+            exam_name: true,
           },
          
         },
         messages: {
-          year_name: {
-            required: "Please enter year name",
-            year_name: "Please enter a unique year name"
+          exam_name: {
+            required: "Please enter exam type name",
+            exam_name: "Please enter a unique exam name"
           },
           terms: "Please accept our terms"
           

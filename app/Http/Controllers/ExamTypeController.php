@@ -4,82 +4,68 @@ namespace App\Http\Controllers;
 
 use App\Models\ExamType;
 use Illuminate\Http\Request;
-
+use Toastr;
 class ExamTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $exam_types = ExamType::orderBy('id','desc')->get();
+        return view('setup.exam_type.examType-index', compact('exam_types'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('setup.exam_type.examType-create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'exam_name'=>'required|unique:exam_types,exam_name',
+        ]);
+
+        $data = new ExamType();
+        $data->exam_name = $request->exam_name;
+        if($data->save() > 0){
+            Toastr::success('Exam successfuly inserted', 'Success');
+            return redirect()->route('examType.index');
+        }else{
+            Toastr::error('Exam did not inserted', 'Error');
+            return redirect()->route('examType.index');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ExamType  $examType
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ExamType $examType)
+
+    public function show(StudentClass $studentClass)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ExamType  $examType
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ExamType $examType)
+
+    public function edit($id)
     {
-        //
+        $exam_edit = ExamType::where('id',$id)->first();
+        return view('setup.exam_type.examType-edit', compact('exam_edit'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ExamType  $examType
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ExamType $examType)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ExamType  $examType
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ExamType $examType)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'exam_name'=>'required|unique:exam_types,exam_name',
+        ]);
+
+        $data = ExamType::find($id);
+        $data->exam_name = $request->exam_name;
+        if($data->update() > 0){
+            Toastr::success('Exam successfuly updated', 'Success');
+            return redirect()->route('examType.index');
+        }else{
+            Toastr::error('Exam did not updated', 'Error');
+            return redirect()->route('examType.index');
+   
+       }
     }
 }

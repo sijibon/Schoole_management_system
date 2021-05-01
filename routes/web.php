@@ -9,6 +9,10 @@ use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\FeeCategoryController;
 use App\Http\Controllers\FeeAmountController;
+use App\Http\Controllers\ExamTypeController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\AssignSubjectController;
+use App\Http\Controllers\DesignationController;
 
 
 /*
@@ -57,5 +61,9 @@ Route::resource('student/group', StudentGroupController::class);
 Route::resource('student/shift', ShiftController::class);
 Route::resource('student/fee', FeeCategoryController::class);
 Route::resource('student/fee_amount', FeeAmountController::class);
+Route::resource('student/examType', ExamTypeController::class);
+Route::resource('student/subject', SubjectController::class);
+Route::resource('student/assignSubject', AssignSubjectController::class);
+Route::resource('student/designation', DesignationController::class);
 
 

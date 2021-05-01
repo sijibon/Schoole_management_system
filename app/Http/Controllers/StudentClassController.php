@@ -16,7 +16,7 @@ class StudentClassController extends Controller
     public function index()
     {
         $classes = StudentClass::orderBy('id','desc')->get();
-        return view('students_class.student-class-index', compact('classes'));
+        return view('setup.students_class.student-class-index', compact('classes'));
     }
 
     /**
@@ -26,7 +26,7 @@ class StudentClassController extends Controller
      */
     public function create()
     {
-        return view('students_class.class-create');
+        return view('setup.students_class.class-create');
     }
 
     /**
@@ -49,8 +49,8 @@ class StudentClassController extends Controller
             Toastr::success('Class successfuly inserted', 'Success');
             return redirect()->route('class.index');
         }else{
-            Toastr::error(' Class did not inserted', 'Error');
-            return view('students_class.student-class-index');
+            Toastr::error('Class did not inserted', 'Error');
+            return view('setup.students_class.student-class-index');
         }
     }
 
@@ -74,7 +74,7 @@ class StudentClassController extends Controller
     public function edit($id)
     {
         $edit = StudentClass::where('id',$id)->first();
-        return view('students_class.edit-class', compact('edit'));
+        return view('setup.students_class.edit-class', compact('edit'));
     }
 
 
@@ -90,7 +90,7 @@ class StudentClassController extends Controller
             Toastr::success('Class successfuly updated', 'Success');
             return redirect()->route('class.index');
         }else{
-            Toastr::error(' Class did not updated', 'Error');
+            Toastr::error('Class did not updated', 'Error');
             return redirect()->route('class.index');
         }
     }

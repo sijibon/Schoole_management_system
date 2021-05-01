@@ -7,15 +7,10 @@ use Illuminate\Http\Request;
 use Toastr;
 class YearController extends Controller
 {
-       /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $years = year::orderBy('id','desc')->get();
-        return view('students_year.year-index', compact('years'));
+        return view('setup.students_year.year-index', compact('years'));
     }
 
     /**
@@ -25,7 +20,7 @@ class YearController extends Controller
      */
     public function create()
     {
-        return view('students_year.year-create');
+        return view('setup.students_year.year-create');
     }
 
     /**
@@ -48,7 +43,7 @@ class YearController extends Controller
             return redirect()->route('year.index');
         }else{
             Toastr::error('Year did not inserted', 'Error');
-            return view('students_year.year-index');
+            return view('setup.students_year.year-index');
         }
     }
 
@@ -72,7 +67,7 @@ class YearController extends Controller
     public function edit($id)
     {
         $editYear = year::where('id',$id)->first();
-        return view('students_year.edit-year', compact('editYear'));
+        return view('setup.students_year.edit-year', compact('editYear'));
     }
 
 

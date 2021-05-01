@@ -71,7 +71,7 @@
           </li>
 
           <li class="nav-item {{Request::is(('student/class') OR Request::is('student/year') OR Request::is('student/group') 
-             OR Request::is('student/shift') OR Request::is('student/fee')) ? 'menu-open': ''}}">
+             OR Request::is('student/shift') OR Request::is('student/fee')  OR Request::is('student/subject')) ? 'menu-open': ''}}">
             <a href="#" class="nav-link">
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fa fa-file"></i>
@@ -112,6 +112,30 @@
                 <a href="{{route('fee_amount.index')}}" class="nav-link {{Request::is('student/fee_amount') ? 'active': ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fee Category Amount</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('examType.index')}}" class="nav-link {{Request::is('student/examType') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Exam Type</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('subject.index')}}" class="nav-link {{Request::is('student/subject') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Subjects View</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('assignSubject.index')}}" class="nav-link {{Request::is('student/assignSubject') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Assign Subject</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('designation.index')}}" class="nav-link {{Request::is('student/designation') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Designations</p>
                 </a>
               </li>
             </ul>

@@ -11,7 +11,7 @@ class StudentGroupController extends Controller
     public function index()
     {
         $groups = StudentGroup::orderBy('id','desc')->get();
-        return view('students_group.group-index', compact('groups'));
+        return view('setup.students_group.group-index', compact('groups'));
     }
 
     /**
@@ -21,7 +21,7 @@ class StudentGroupController extends Controller
      */
     public function create()
     {
-        return view('students_group.group-create');
+        return view('setup.students_group.group-create');
     }
 
     /**
@@ -43,7 +43,7 @@ class StudentGroupController extends Controller
             return redirect()->route('group.index');
         }else{
             Toastr::error('Group did not inserted', 'Error');
-            return view('students_group.group-index');
+            return view('setup.students_group.group-index');
         }
     }
 
@@ -67,7 +67,7 @@ class StudentGroupController extends Controller
     public function edit($id)
     {
         $editGroup = StudentGroup::where('id',$id)->first();
-        return view('students_group.edit-group', compact('editGroup'));
+        return view('setup.students_group.edit-group', compact('editGroup'));
     }
 
 

@@ -14,7 +14,7 @@ class FeeAmountController extends Controller
     {
 
         $fee_amounts = FeeAmount::with('fee_category')->orderBy('id','desc')->select('fee_category_id')->groupBy('fee_category_id')->get();
-        return view('fee_amount.fee_amount-index', compact('fee_amounts'));
+        return view('setup.fee_amount.fee_amount-index', compact('fee_amounts'));
     }
 
 
@@ -22,7 +22,7 @@ class FeeAmountController extends Controller
     {   
         $all_class = StudentClass::get();
         $FeeCategory = FeeCategory::get();
-        return view('fee_amount.fee_amount-create', compact('all_class','FeeCategory'));
+        return view('setup.fee_amount.fee_amount-create', compact('all_class','FeeCategory'));
     }
 
 
@@ -49,7 +49,7 @@ class FeeAmountController extends Controller
     public function show($fee_category_id)
     {
         $show = FeeAmount::where('fee_category_id',$fee_category_id)->orderBy('class_id','asc')->get();
-        return view('fee_amount.fee_amount_show', compact('show'));
+        return view('setup.fee_amount.fee_amount_show', compact('show'));
     }
 
 
@@ -59,7 +59,7 @@ class FeeAmountController extends Controller
      $fee_amount_edits = FeeAmount::where('fee_category_id',$fee_category_id)->orderBy('class_id','asc')->get();
         $all_class = StudentClass::get();
         $FeeCategory = FeeCategory::get();
-        return view('fee_amount.fee_amount-edit', compact('fee_amount_edits','FeeCategory','all_class'));
+        return view('setup.fee_amount.fee_amount-edit', compact('fee_amount_edits','FeeCategory','all_class'));
     }
 
 

@@ -10,7 +10,7 @@ class ShiftController extends Controller
    public function index()
     {
         $shifts = Shift::orderBy('id','desc')->get();
-        return view('students_shift.shift-index', compact('shifts'));
+        return view('setup.students_shift.shift-index', compact('shifts'));
     }
 
     /**
@@ -20,7 +20,7 @@ class ShiftController extends Controller
      */
     public function create()
     {
-        return view('students_shift.shift-create');
+        return view('setup.students_shift.shift-create');
     }
 
     /**
@@ -42,7 +42,7 @@ class ShiftController extends Controller
             return redirect()->route('shift.index');
         }else{
             Toastr::error('Shift did not inserted', 'Error');
-            return view('students_shift.shift-index');
+            return view('setup.students_shift.shift-index');
         }
     }
 
@@ -66,7 +66,7 @@ class ShiftController extends Controller
     public function edit($id)
     {
         $editShift = Shift::where('id',$id)->first();
-        return view('students_shift.shift-edit', compact('editShift'));
+        return view('setup.students_shift.shift-edit', compact('editShift'));
     }
 
 
@@ -86,5 +86,6 @@ class ShiftController extends Controller
             return redirect()->route('shift.index');
    
        }
-    }
+  }
+  
 }
