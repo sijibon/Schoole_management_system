@@ -13,6 +13,8 @@ use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\RollGenerateController;
 
 
 /*
@@ -55,15 +57,29 @@ Route::group(['middleware'=>'auth'], function(){
 
 });
 
-Route::resource('student/class', StudentClassController::class);
-Route::resource('student/year', YearController::class);
-Route::resource('student/group', StudentGroupController::class);
-Route::resource('student/shift', ShiftController::class);
-Route::resource('student/fee', FeeCategoryController::class);
-Route::resource('student/fee_amount', FeeAmountController::class);
-Route::resource('student/examType', ExamTypeController::class);
-Route::resource('student/subject', SubjectController::class);
-Route::resource('student/assignSubject', AssignSubjectController::class);
-Route::resource('student/designation', DesignationController::class);
+Route::prefix('setup')->group(function(){
+    Route::resource('student/class', StudentClassController::class);
+    Route::resource('student/year', YearController::class);
+    Route::resource('student/group', StudentGroupController::class);
+    Route::resource('student/shift', ShiftController::class);
+    Route::resource('student/fee', FeeCategoryController::class);
+    Route::resource('student/fee_amount', FeeAmountController::class);
+    Route::resource('student/examType', ExamTypeController::class);
+    Route::resource('student/subject', SubjectController::class);
+    Route::resource('student/assignSubject', AssignSubjectController::class);
+    Route::resource('student/designation', DesignationController::class);
+});
+
+
+Route::resource('student/registration', StudentController::class);
+Route::get('student/yearSearch', [StudentController::class,'yearSearch'])->name('yearSearch');
+Route::get('student/promotion/{student_id}', [StudentController::class,'promotion'])->name('promotion');
+Route::post('student/promotion/{student_id}', [StudentController::class,'promotionStore'])->name('student.promotion');
+Route::get('student/details/{student_id}', [StudentController::class,'details'])->name('student.details');
+
+Route::resource('student/roll_generate', RollGenerateController::class);
+
+
+
 
 

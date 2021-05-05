@@ -1,4 +1,9 @@
-  <!-- Main Sidebar Container -->
+ @php
+     $prefix = Request::Route()->getPrefix();
+     $route = Route::current()->getName();
+ @endphp
+
+
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('home')}}" class="brand-link">
@@ -32,15 +37,15 @@
             </a>
           </li>
           @if(Auth::user()->user_role == 'Admin')
-          <li class="nav-item {{Request::is('users/view') ? 'menu-open': ''}}">
-            <a href="#" class="nav-link" {{Request::is('users/view') ? 'active': ''}}>
+          <li class="nav-item {{($prefix =='users') ? 'menu-open': ''}}">
+            <a href="#" class="nav-link">
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fas fa-th"></i>
               <p>User Manage</p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('users.view')}}" class="nav-link {{Request::is('users/view') ? 'active': ''}}">
+                <a href="{{route('users.view')}}" class="nav-link {{($route =='users.view') ? 'active': ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
@@ -48,7 +53,7 @@
             </ul>
           </li>
           @endif
-          <li class="nav-item {{Request::is(('profiles/view') OR ('profiles/cpassword')) ? 'menu-open': ''}}">
+          <li class="nav-item {{Request::is('profiles')? 'menu-open': ''}}">
             <a href="#" class="nav-link">
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fa fa-user"></i>
@@ -70,8 +75,7 @@
             </ul>
           </li>
 
-          <li class="nav-item {{Request::is(('student/class') OR Request::is('student/year') OR Request::is('student/group') 
-             OR Request::is('student/shift') OR Request::is('student/fee')  OR Request::is('student/subject')) ? 'menu-open': ''}}">
+          <li class="nav-item {{Request::is('setup') ? 'menu-open': ''}}">
             <a href="#" class="nav-link">
               <i class="fas fa-angle-left right"></i>
               <i class="nav-icon fa fa-file"></i>
@@ -136,6 +140,28 @@
                 <a href="{{route('designation.index')}}" class="nav-link {{Request::is('student/designation') ? 'active': ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Designations</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item {{Request::is('student/registration') ? 'menu-open': ''}}">
+            <a href="#" class="nav-link">
+              <i class="fas fa-angle-left right"></i>
+              <i class="nav-icon fa fa-user"></i>
+              <p>Student Manage</p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('registration.index')}}" class="nav-link {{Request::is('student/registration') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Registration</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('roll_generate.index')}}" class="nav-link {{Request::is('student/roll_generate') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Roll Generate</p>
                 </a>
               </li>
             </ul>

@@ -39,7 +39,7 @@
                             <label>User Role</label>
                             <select name="user_role" class="custom-select form-control" id="user_role">
                                 <option value="admin">Admin</option>
-                                <option value="user">User</option>
+                                <option value="operator">Operator</option>
                             </select>
                         </div>
                     </div>
@@ -59,24 +59,6 @@
                           <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email ...">
                         </div>
                       </div>
-
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="password" id="password" value="{{ old('password') }}" class="form-control" placeholder="password ...">
-                        </div>
-                    </div>
-                  </div>
-
-                   <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Confirme Password</label>
-                            <input type="password" name="cpassword" value="{{ old('cpassword') }}" class="form-control" placeholder="Confirm Password ...">
-                        </div>
-                    </div>                 
-                    </div> 
-
                     <div class="card-footer">
                       <button type="submit" class="btn btn-info">Submit</button>
                     </div>
@@ -117,15 +99,15 @@
           user_role: {
             required: true,
           },
-          password: {
-            required: true,
-            minlength: 6
-          },
+          // password: {
+          //   required: true,
+          //   minlength: 6
+          // },
 
-          cpassword: {
-            required: true,
-            equalTo:'#password',
-          },
+          // cpassword: {
+          //   required: true,
+          //   equalTo:'#password',
+          // },
           terms: {
             required: true
           },
@@ -143,10 +125,10 @@
           user_role: {
             required: "Please select one",
           },
-          password: {
-            required: "Please provide a password",
-            minlength: "Your password must be at least 6 characters long"
-          },
+          // password: {
+          //   required: "Please provide a password",
+          //   minlength: "Your password must be at least 6 characters long"
+          // },
           terms: "Please accept our terms"
           
         },
@@ -163,6 +145,6 @@
         }
       });
     });
-    </script>
+</script>
   @endpush
 @endsection

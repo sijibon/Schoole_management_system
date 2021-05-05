@@ -39,7 +39,7 @@
                             <label>User Role</label>
                             <select name="user_role" class="custom-select form-control" id="user_role">
                                 <option value="admin" {{($editUser->user_role =='Admin')? 'selected':''}}>Admin</option>
-                                <option value="user">User</option>
+                                <option value="operator" {{($editUser->user_role =='Operator')? 'selected':''}}>Operator</option>
                             </select>
                         </div>
                     </div>

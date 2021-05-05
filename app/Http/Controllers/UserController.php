@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-       $users = User::orderBy('id','desc')->get();
+       $users = User::where('user_type','admin')->orderBy('id','desc')->get();
        return view('users.user-index', compact('users'));
 
     }
@@ -26,15 +26,17 @@ class UserController extends Controller
             'user_role' =>'required',
             'name' =>'required',
             'email' =>'required|unique:users,email',
-            'password' =>'required',
-            'cpassword' =>'required',
+
         ]);
 
         $data = new User();
+        $code = rand(0000,9999);
+        $data->user_type = 'admin';
         $data->user_role = $request->user_role;
         $data->name = $request->name;
         $data->email = $request->email;
-        $data->password = Hash::make($request->password);
+        $data->password = Hash::make($code);
+        $data->code = $code;
 
         if($data->save() > 0){
             Toastr::success('User inserted Successfully','Success');

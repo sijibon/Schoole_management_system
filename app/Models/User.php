@@ -26,7 +26,18 @@ class User extends Authenticatable
         'status',
         'gender',
         'image',
+        'fname',
+        'mname',
+        'religion',
+        'id_no',
+        'dob',
+        'code',
+        'user_type',
+        'join_date',
+        'designation_id',
+        'salary'
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.

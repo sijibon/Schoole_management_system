@@ -33,7 +33,7 @@
                   </div>
   
                   <h3 class="profile-username text-center">{{$user->name}}</h3>
-                  <h4 class="text-muted text-center"><span class="badge badge-success">{{$user->user_role}}</span></h4>
+                  <h4 class="text-muted text-center"><span class="badge badge-success">{{$user->user_type}}</span></h4>
   
                   <table width="100%" class="table">
                       <tr>

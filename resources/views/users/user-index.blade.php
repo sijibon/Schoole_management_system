@@ -41,8 +41,10 @@
                     <tr>              
                         <th>#SL</th>
                         <th>Name</th>
-                        <th>Role</th>
+                        <th>User Type</th>
                         <th>Email</th>
+                        <th>Code</th>
+                        <th>User Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -55,8 +57,10 @@
                         <tr>
                             <td>{{$key++}}</td>
                             <td>{{$user->name}}</td>
-                            <td><span class="badge badge-success">{{$user->user_role}}</span></td>
+                            <td><span class="badge badge-success">{{$user->user_type}}</span></td>
                             <td>{{$user->email}}</td>
+                            <td>{{$user->code}}</td>
+                            <td>{{$user->user_role}}</td>
                             <td class="d-flex">
                                 <a class="btn btn-sm btn-info mc-1" href="{{ url('users/edit/'.$user->id) }}"><i class="fas fa-edit"></i></a>
                                 <a class="btn btn-sm btn-success mx-1" href="{{ url('users/view/'.$user->id) }}"><i class="fas fa-eye"></i></a>
