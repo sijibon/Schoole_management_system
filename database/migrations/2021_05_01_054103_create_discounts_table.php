@@ -17,7 +17,7 @@ class CreateDiscountsTable extends Migration
             $table->id();
             $table->integer('student_id');
             $table->integer('fee_category_id');
-            $table->string('discount');
+            $table->string('discount')->nullable();
             $table->timestamps();
         });
     }

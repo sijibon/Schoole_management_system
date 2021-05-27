@@ -78,6 +78,9 @@ Route::post('student/promotion/{student_id}', [StudentController::class,'promoti
 Route::get('student/details/{student_id}', [StudentController::class,'details'])->name('student.details');
 
 Route::resource('student/roll_generate', RollGenerateController::class);
+Route::get('student/get', [RollGenerateController::class,'get_student'])->name('get.student');
+Route::post('student/roll/store', [RollGenerateController::class,'store'])->name('roll.store');
+
 
 
 
