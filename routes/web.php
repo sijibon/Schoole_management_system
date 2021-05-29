@@ -15,6 +15,7 @@ use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\RollGenerateController;
+use App\Http\Controllers\RegFeeController;
 
 
 /*
@@ -55,7 +56,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::post('/change/password',[ProfileController::class,'changePassword'])->name('profiles.change.password');
     });
 
-});
+
 
 Route::prefix('setup')->group(function(){
     Route::resource('student/class', StudentClassController::class);
@@ -70,6 +71,7 @@ Route::prefix('setup')->group(function(){
     Route::resource('student/designation', DesignationController::class);
 });
 
+//student registrations 
 
 Route::resource('student/registration', StudentController::class);
 Route::get('student/yearSearch', [StudentController::class,'yearSearch'])->name('yearSearch');
@@ -82,7 +84,15 @@ Route::get('student/get', [RollGenerateController::class,'get_student'])->name('
 Route::post('student/roll/store', [RollGenerateController::class,'store'])->name('roll.store');
 
 
+//student registrations fee
+Route::get('reg/fee/view', [RegFeeController::class,'index'])->name('student.reg.fee');
+Route::get('student/reg/fee/get-student/', [RegFeeController::class,'get_student'])->name('student.reg.fee.get-student');
+Route::get('student/reg/fee/payslip/', [RegFeeController::class,'paySlip'])->name('student.reg.fee.slip');
 
 
+
+
+
+});
 
 
