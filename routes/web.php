@@ -16,6 +16,8 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\RollGenerateController;
 use App\Http\Controllers\RegFeeController;
+use App\Http\Controllers\MonthlyFeeController;
+use App\Http\Controllers\ExamFeeController;
 
 
 /*
@@ -89,9 +91,15 @@ Route::get('reg/fee/view', [RegFeeController::class,'index'])->name('student.reg
 Route::get('student/reg/fee/get-student/', [RegFeeController::class,'get_student'])->name('student.reg.fee.get-student');
 Route::get('student/reg/fee/payslip/', [RegFeeController::class,'paySlip'])->name('student.reg.fee.slip');
 
+//student monthly fee
+Route::get('monthly/fee/view', [MonthlyFeeController::class,'index'])->name('student.monthly.fee');
+Route::get('student/monthly/fee/get-student/', [MonthlyFeeController::class,'get_student'])->name('student.monthly.fee.get-student');
+Route::get('student/monthly/fee/payslip/', [MonthlyFeeController::class,'paySlip'])->name('student.monthly.fee.slip');
 
-
-
+//student exam fee
+Route::get('exam/fee/view', [ExamFeeController::class,'index'])->name('student.exam.fee');
+Route::get('student/exam/fee/get-student/', [ExamFeeController::class,'get_student'])->name('student.exam.fee.get-student');
+Route::get('student/exam/fee/payslip/', [ExamFeeController::class,'paySlip'])->name('student.exam.fee-slip');
 
 });
 

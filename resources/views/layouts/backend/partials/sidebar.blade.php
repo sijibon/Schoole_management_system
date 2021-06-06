@@ -170,6 +170,18 @@
                   <p>Registration Fee</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('student.monthly.fee')}}" class="nav-link {{($route == 'student.monthly.fee') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly Fee</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('student.exam.fee')}}" class="nav-link {{($route == 'student.exam.fee') ? 'active': ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Exam Fee</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>

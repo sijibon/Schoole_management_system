@@ -6,18 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\StudentClass;
 use App\Models\Year;
 use App\Models\FeeAmount;
+use App\Models\ExamType;
 use App\Models\backend\students\Student;
 use Toastr;
 use DB;
 use PDF;
-class RegFeeController extends Controller
-{
 
+class ExamFeeController extends Controller
+{
     public function index()
     {
         $data['years'] = Year::orderBy('id','desc')->get();
         $data['classes'] = StudentClass::get();
-        return view('layouts.backend.registration_fee.reg-fee-index', $data);
+        $data['exam_types'] = ExamType::get();
+        return view('layouts.backend.exam_fee.exam-fee-index', $data);
         
     }
 
@@ -41,32 +43,30 @@ class RegFeeController extends Controller
         $html['thsource'] .= '<th>ID No.</th>';
         $html['thsource'] .= '<th>Student Name</th>';
         $html['thsource'] .= '<th>Roll No.</th>';
-        $html['thsource'] .= '<th>Registration Fee</th>';
+        $html['thsource'] .= '<th>Monthly Fee</th>';
         $html['thsource'] .= '<th>Discount Amount</th>';
         $html['thsource'] .= '<th> Fee (This student)</th>';
         $html['thsource'] .= '<th>Action</th>';
 
         foreach($allstudent as $key => $value){
-            $reg_fee = FeeAmount::where('fee_category_id','2')->where('class_id',$value->class_id)->first();
-            // dd($reg_fee);
+            $monthly_fee = FeeAmount::where('fee_category_id','1')->where('class_id',$value->class_id)->first();
             $color = 'success';
             $html[$key]['tdsource'] = '<td>'.($key+1).'</td>';
             $html[$key]['tdsource'] .= '<td>'.$value['user']['id_no'].'</td>';
             $html[$key]['tdsource'] .= '<td>'.$value['user']['name'].'</td>';
             $html[$key]['tdsource'] .= '<td>'.$value->roll.'</td>';
-            $html[$key]['tdsource'] .= '<td>'.$reg_fee->amount.'TK'.'</td>';
+            $html[$key]['tdsource'] .= '<td>'.$monthly_fee->amount.'TK'.'</td>';
             $html[$key]['tdsource'] .= '<td>'.$value['discount']['discount'].'%'.'</td>';
 
-            $original_fee = $reg_fee->amount;
+            $original_fee = $monthly_fee->amount;
             $discount = $value['discount']['discount'];
             $discountable_fee = $original_fee/100*$discount;
             $final_fee = (int)$original_fee - (int)$discountable_fee;
-            // dd($final_fee);
 
             $html[$key]['tdsource'] .= '<td>'.$final_fee.'TK'.'</td>';
             $html[$key]['tdsource'] .= '<td>';
             $html[$key]['tdsource'] .= '<a class="btn btn-sm btn-'.$color.'" title="PlaySlip" target="_blank" 
-            href="'.route("student.reg.fee.slip").'?class_id='.$value->class_id.'&student_id='.$value->student_id.'">Fee Slip</a>';
+            href="'.route("student.exam.fee-slip").'?class_id='.$value->class_id.'&student_id='.$value->student_id.'&exam_type='.$request->exam_type.'">Fee Slip</a>';
             $html[$key]['tdsource'] .= '<td>';
         }
 
@@ -74,18 +74,18 @@ class RegFeeController extends Controller
    
     }
 
+     public function paySlip(Request $request)
+        {
+            $student_id = $request->student_id;
+            $class_id = $request->class_id;
+            $exam_type = $request->exam_type;
+            $data['exam_name'] = ExamType::where('id',$request->exam_type)->first()['exam_name'];
+            $data['details'] = Student::with(['discount','user'])->where('student_id', $student_id)->where('class_id',$class_id)->first();
+            $pdf = PDF::loadView('layouts.backend.exam_fee.exam-fee-slip', $data);
+            $pdf->setOptions(['copy', 'print'], '', 'pass');
+            return $pdf->stream('invoice.pdf');
 
-    public function paySlip(Request $request)
-    {
-        $student_id = $request->student_id;
-        $class_id = $request->class_id;
-
-        $allstudent['details'] = Student::with(['discount','user'])->where('student_id', $student_id)->where('class_id',$class_id)->first();
-        $pdf = PDF::loadView('layouts.backend.registration_fee.reg-fee-slip', $allstudent);
-        $pdf->setOptions(['copy', 'print'], '', 'pass');
-        return $pdf->stream('invoice.pdf');
-
-    }
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -166,5 +166,4 @@ class RegFeeController extends Controller
     {
         //
     }
-
 }
